@@ -15,7 +15,7 @@ const { checkAuth } = require('./middleware/Authmiddleware');
 const app = express();
 dotenv.config();
 app.use(cors({
-    origin:"http://localhost:5173",
+    origin: ["http://localhost:5173","https://leadership-hub-bn8s.vercel.app/"],
     credentials:true
 }));
 app.use(express.json());
