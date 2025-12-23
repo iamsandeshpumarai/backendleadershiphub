@@ -44,7 +44,6 @@ console.log(" aim on login route")
             res.cookie("token", token, {
             httpOnly: true,
             maxAge: 1000 * 60 * 60 ,
-            secure:true,
             sameSite:"none"
 
         
