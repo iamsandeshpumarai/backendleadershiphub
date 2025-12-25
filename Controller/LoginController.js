@@ -42,7 +42,10 @@ console.log(" aim on login route")
         // Set cookie
         res.cookie("token", token, {
             httpOnly: true,
-            maxAge: 1000 * 60 * 60 // 1 hour
+            maxAge: 1000 * 60 * 60 ,
+            sameSite:"none",
+            secure:true
+
         });
 
         res.status(200).json({ message: "Login successful" });
@@ -54,6 +57,7 @@ console.log(" aim on login route")
 
 const checked = (req, res) => {
     console.log("iam on checked")
+    console.log("iamonchecked route")
     try {
         const id = req.id;
         res.status(200).json({ message: "Found Credential", data: id || "this is the data"});

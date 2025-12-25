@@ -1,12 +1,10 @@
 const mongoose = require('mongoose');
 
-const OfficeSchema =  new mongoose.Schema({
-  // Address Section
+const OfficeSchema = new mongoose.Schema({
   officeAddress: { type: String, required: true, trim: true },
-  province: { type: String, required: true }, // Dropdown value
-  cityState: { type: String, required: true }, // E.g., "Kathmandu, Nepal" for Map integration
+  province: { type: String, required: true },
+  cityState: { type: String, required: true },
   
-  // Dynamic Arrays
   phoneNumbers: [{
     number: { type: String, required: true },
     type: { type: String, enum: ['Office', 'Mobile', 'Fax'], default: 'Office' }
@@ -16,8 +14,6 @@ const OfficeSchema =  new mongoose.Schema({
     address: { type: String, required: true, lowercase: true, trim: true }
   }],
 
-  // --- MODIFIED SECTION: Simplified Office Hours ---
-  // Replaced the 'officeHours' array with two descriptive strings
   hoursSummary: { 
     type: String, 
     default: "Sunday - Friday: 09:00 AM - 05:00 PM" 
@@ -26,9 +22,7 @@ const OfficeSchema =  new mongoose.Schema({
     type: String, 
     default: "Closed on Saturdays and Public Holidays" 
   },
-  // ----------------------------------------------------
   
-  // New Fields: Office Highlights
   Parking: {
     type: String,
     enum: ["Available", "Not Available"],
@@ -43,11 +37,14 @@ const OfficeSchema =  new mongoose.Schema({
     default: "Central"
   },
 
-  // For the "Visit Office" text section
-  visitHeading: { type: String, default: "Our office is located in the heart of Kathmandu. We welcome scheduled visits." },
-  visitDescription: { type: String, default: "Interactive Map\nKathmandu, Bagmati Province, Nepal" }
+  visitHeading: { type: String, default: "Our office is located in the heart of Kathmandu." },
+  visitDescription: { type: String, default: "Interactive Map\nKathmandu, Nepal" },
+
+  // --- NEW FOOTER FIELDS ---
+  footerGmail: { type: String, trim: true, default: "contact@girirajpokhrel.com" },
+  footerPhone: { type: String, trim: true, default: "+977-01-XXXXXXX" },
+  footerLocation: { type: String, trim: true, default: "Campaign Office, Main Street, City" }
 
 }, { timestamps: true });
 
-const Office = mongoose.model('Office', OfficeSchema);
-module.exports = Office;
+module.exports = mongoose.model('Office', OfficeSchema);

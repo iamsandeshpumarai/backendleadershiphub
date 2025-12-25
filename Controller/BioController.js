@@ -39,8 +39,8 @@ const insertBioGraphyData = async (req, res) => {
 const updateBioGraphyData = async (req, res) => {
   console.log(req.body.data)
   try {
-    const imageUrl = req.file?.path;
     const data = JSON.parse(req.body.data);
+    const imageUrl = req.file?.path || data.profile.photoUrl;
 
     const finalData = {
       ...data,

@@ -22,14 +22,20 @@ const gallerySchema = new mongoose.Schema({
     type: String,
     trim: true
   },
-  image: {
+  // --- NEW FIELDS FOR COVER PHOTO ---
+  coverImage: {
     type: String, // Cloudinary URL
-    required: [true, 'Image is required']
+    required: [true, 'Cover image is required']
   },
-  cloudinary_id: {
-    type: String, // Cloudinary public_id for deletion
-    required: [true, 'Cloudinary ID is required']
-  }
+  cover_cloudinary_id: {
+    type: String, // Cloudinary public_id
+    required: [true, 'Cover Cloudinary ID is required']
+  },
+  // --- NEW FIELDS FOR ADDITIONAL IMAGES ---
+  galleryImages: [{
+    url: String,        // Cloudinary URL
+    cloudinary_id: String // Cloudinary public_id
+  }]
 }, { timestamps: true });
 
 module.exports = mongoose.model('Gallery', gallerySchema);

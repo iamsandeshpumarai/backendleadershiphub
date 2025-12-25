@@ -10,8 +10,10 @@ const GalleryRouter = require('./Routes/GalleryRoute');
 const NewsRouter = require('./Routes/NewsRoute');
 const ContactRouter = require('./Routes/ContactRoute');
 const BookRouter = require('./Routes/BookStoreRoute');
+const SettingRouter = require('./Routes/SettingRoute');
 const {  LoggedIn, checked, LoggedOut } = require('./Controller/LoginController');
 const { checkAuth } = require('./middleware/Authmiddleware');
+
 const app = express();
 dotenv.config();
 app.use(cors({
@@ -31,37 +33,34 @@ mongoose.connect(process.env.MONGO_URI).then(async()=>{
 
 // Routes
 
-// router for the user home 
+// route for the user home 
 app.use('/home',HomeRouter)
 
-// router for the bio 
+// route for the bio 
 app.use('/bio',BioRouter)
  
-// router for the events 
+// route for the events 
 app.use('/event',EventRouter)
 
-//router for the gallery
+//route for the gallery
 app.use('/gallery',GalleryRouter)
 
-// router for the news 
+// route for the news 
 app.use('/news',NewsRouter)
 
-//router for the contact
+//route for the contact
 app.use('/contact',ContactRouter)
 
-// router for the bookstore 
+// route for the bookstore 
 app.use('/store',BookRouter)
+
+// route for the setting 
+app.use('/setting',SettingRouter)
 
 app.post('/login',LoggedIn)
 app.post('/logout',LoggedOut)
 app.get('/check',checkAuth,checked)
-app.get('/api/sampling', (req, res) => {
-    res.json({ message: 'Sampling endpoint' });
-});
 
-app.post('/api/sampling', (req, res) => {
-    res.json({ message: 'Sampling data received' });
-});
 
 const PORT = process.env.PORT || 5000;
 

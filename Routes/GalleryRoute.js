@@ -5,7 +5,7 @@ const { insertGallery, updateGallery, deleteGallery, getGallery } = require('../
 
 // @route   POST /gallery/insertgallery
 // @desc    Insert new gallery item
-router.post('/insertgallery', upload.single('image'), insertGallery);
+router.post('/insertgallery', upload.fields([{name:"coverImage",maxCount:1},{name:"galleryImages",maxCount:10}]), insertGallery);
 
 // @route   PUT /gallery/update/:id
 // @desc    Update existing gallery item

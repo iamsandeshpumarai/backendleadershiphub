@@ -1,6 +1,15 @@
 const NewsModel = require('../Models/NewsModel');
 const { dataHandler, errorHandler } = require('../utils/responseHelper');
 
+const insertManyNews = async(req,res)=>{
+  try{
+    await NewsModel.create(req.body)
+res.status(200).json({message:"ok"})
+}
+catch(err){
+  console.log(err)
+}
+}
 // INSERT News
 const insertNews = async (req, res) => {
   try {
@@ -36,6 +45,16 @@ const deleteDataNews = async (req, res) => {
   }
 };
 
+const deleteAllNews = async (req, res) => {
+  try{
+await NewsModel.deleteMany({})
+res.status(200).json({message:"All news deleted successfully"})
+  }
+  catch(err){
+    console.log(err)
+  }
+}
+
 // UPDATE News by ID
 const updateNews = async (req, res) => {
   try {
@@ -49,4 +68,4 @@ const updateNews = async (req, res) => {
   }
 };
 
-module.exports = { insertNews, getNews, deleteDataNews, updateNews };
+module.exports = { insertNews, getNews, deleteDataNews, updateNews ,insertManyNews ,deleteAllNews};

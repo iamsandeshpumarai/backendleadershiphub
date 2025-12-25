@@ -3,10 +3,12 @@ const { dataHandler, errorHandler } = require("../utils/responseHelper");
 
 // UPDATE Home Data
 const updateHomeData = async (req, res) => {
+  console.log("Request body:", req.body);
   try {
     console.log(req.file);
     const data = JSON.parse(req.body.data);
-    const imageUrl = req?.file?.path;
+    console.log(data)
+    const imageUrl = req?.file?.path || data.hero.imageUrl;
     console.log("Updating home data:", data, imageUrl);
 
     const formatedData = { ...data,hero :{ ...data.hero,imageUrl}  }
