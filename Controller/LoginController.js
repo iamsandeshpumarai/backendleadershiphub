@@ -40,12 +40,10 @@ console.log(" aim on login route")
         const token = jwt.sign({ id: admin._id }, "iloveyoumyan", { expiresIn: "1h" });
 
         // Set cookie
-        res.cookie("token", token, {
+       
+            res.cookie("token", token, {
             httpOnly: true,
-            maxAge: 1000 * 60 * 60 ,
-            sameSite:"none",
-            secure:true
-
+            maxAge: 1000 * 60 * 60 // 1 hour
         });
 
         res.status(200).json({ message: "Login successful" });
