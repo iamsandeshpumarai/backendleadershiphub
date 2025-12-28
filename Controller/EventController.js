@@ -24,7 +24,7 @@ console.log(title,date,description)
 const {day,month,status} = getDayMonthStatus(date)
 console.log(day,month,status)
 console.log(req?.file)
-const image = req?.file.path
+const image = req?.file?.path
 try {
 const Insertdata = {
   title,
@@ -33,7 +33,7 @@ const Insertdata = {
   month,
   description,
   status,
-  imageUrl:image
+  imageUrl:image || ""
 
 }
 console.log(Insertdata)
@@ -120,5 +120,5 @@ module.exports = {
   insertEventData,
   updateEventData,
   deleteEventAll,
-  deleteEvent // FIXED: Renamed from deleteNews
+  deleteEvent 
 };

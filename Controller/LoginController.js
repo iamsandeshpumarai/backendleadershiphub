@@ -46,6 +46,7 @@ console.log(" aim on login route")
             maxAge: 1000 * 60 * 60 ,
             secure:true,
             sameSite:"None"
+            // sameSite:"lax"
         });
 
         res.status(200).json({ message: "Login successful" });

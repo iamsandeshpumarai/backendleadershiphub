@@ -5,11 +5,11 @@ const { dataHandler, errorHandler } = require("../utils/responseHelper");
 const updateHomeData = async (req, res) => {
   console.log("Request body:", req.body);
   try {
-    console.log(req.file);
+    console.log(req.file,"is the file");
     const data = JSON.parse(req.body.data);
     console.log(data)
     const imageUrl = req?.file?.path || data.hero.imageUrl;
-    console.log("Updating home data:", data, imageUrl);
+    
 
     const formatedData = { ...data,hero :{ ...data.hero,imageUrl}  }
     // Update DB (assumes only one document; replace ID if needed)

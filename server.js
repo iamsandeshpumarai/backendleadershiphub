@@ -9,6 +9,7 @@ const EventRouter = require('./Routes/EventRouter');
 const GalleryRouter = require('./Routes/GalleryRoute');
 const NewsRouter = require('./Routes/NewsRoute');
 const ContactRouter = require('./Routes/ContactRoute');
+const InquryRouter = require('./Routes/InquryRoute');
 const BookRouter = require('./Routes/BookStoreRoute');
 const SettingRouter = require('./Routes/SettingRoute');
 const {  LoggedIn, checked, LoggedOut } = require('./Controller/LoginController');
@@ -56,6 +57,10 @@ app.use('/store',BookRouter)
 
 // route for the setting 
 app.use('/setting',SettingRouter)
+
+
+// route for the messageinquiry
+app.use('/inquiry',InquryRouter)
 
 app.post('/login',LoggedIn)
 app.post('/logout',LoggedOut)
