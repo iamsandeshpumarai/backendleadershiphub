@@ -19,11 +19,10 @@ const getDayMonthStatus = (date) => {
 
 const insertEventData = async (req, res) => {
    const { title, date, description } = req.body;
-   console.log(req.body ,"is the body")
+
 console.log(title,date,description)
 const {day,month,status} = getDayMonthStatus(date)
-console.log(day,month,status)
-console.log(req?.file)
+
 const image = req?.file?.path
 try {
 const Insertdata = {
@@ -36,13 +35,13 @@ const Insertdata = {
   imageUrl:image || ""
 
 }
-console.log(Insertdata)
+
 const data = await Event.create(Insertdata)
 
     dataHandler(res, 201, "Event added successfully", data);
 
   } catch (err) {
-    console.error("Error in insertEventData:", err);
+    
     return errorHandler(res, 500, "Server error processing events", err.message);
   }
 };
@@ -54,7 +53,7 @@ await Event.deleteMany({})
 res.status(200).json({message:"All events deleted successfully"}) 
   }
   catch(err){
-    console.log(err)
+    
   }
 }
 // GET all events
@@ -66,7 +65,7 @@ const getEventData = async (req, res) => {
     }
     return dataHandler(res, 200, "Events fetched successfully", events);
   } catch (err) {
-    console.error(err);
+    
     return errorHandler(res, 500, err.message);
   }
 };
@@ -80,9 +79,7 @@ const getEventData = async (req, res) => {
 // UPDATE single event
 const updateEventData = async (req, res) => {
   const id = req.params.id
-console.log(id,"is the id")
-  console.log(req.body,"is the body")
-  console.log(req?.file)
+
   const {title,date,description,status} = req.body
   const {day,month} = getDayMonthStatus(date)
   try {
@@ -96,7 +93,7 @@ status,
 imageUrl:req?.file?.path || req.body?.imageUrl 
 }
 const data = await Event.findByIdAndUpdate(id,updatedData,{new:true})
-console.log(data,"is the new data")
+
 res.status(200).json({message:"Update endpoint hit",})  
   } catch (err) {
     return errorHandler(res, 500, err.message);

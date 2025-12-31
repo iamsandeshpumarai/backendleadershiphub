@@ -16,8 +16,7 @@ res.status(200).json({message:"data saved"})
 
 const LoggedIn = async (req, res) => {
     const { email, password } = req.body;
-console.log(req.body)
-console.log(" aim on login route")
+
     try {
         if (!email || !password) 
             return res.status(400).json({ message: "Enter Email and Password" });
@@ -37,7 +36,7 @@ console.log(" aim on login route")
             return res.status(400).json({ message: "Invalid Password" });
 
         // Generate JWT
-        const token = jwt.sign({ id: admin._id }, "iloveyoumyan", { expiresIn: "1h" });
+        const token = jwt.sign({ id: admin._id },process.env.JWT_SECRET, { expiresIn: "1h" });
 
         // Set cookie
        
@@ -51,14 +50,13 @@ console.log(" aim on login route")
 
         res.status(200).json({ message: "Login successful" });
     } catch (err) {
-        console.error(err.message);
+        
         res.status(500).json({ message: "Server error" });
     }
 };
 
 const checked = (req, res) => {
-    console.log("iam on checked")
-    console.log("iamonchecked route")
+
     try {
         const id = req.id;
         res.status(200).json({ message: "Found Credential", data: id || "this is the data"});

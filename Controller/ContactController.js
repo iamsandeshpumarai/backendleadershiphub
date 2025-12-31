@@ -15,8 +15,7 @@ const getContactData = async (req, res) => {
 
 //createcontact
 const updateContact = async(req,res)=>{
-  console.log("iam inisde thre createcontact")
-  console.log(req.body)
+
   try {
     // Destructure the data directly from the request body
     const {
@@ -32,6 +31,9 @@ const updateContact = async(req,res)=>{
       location,
       visitHeading,
       visitDescription,
+      footerPhone,
+      footerGmail,
+      footerLocation
     } = req.body;
 
     // --- 1. Construct the data object ---
@@ -49,6 +51,9 @@ const updateContact = async(req,res)=>{
       location,
       visitHeading,
       visitDescription,
+            footerPhone,
+      footerGmail,
+      footerLocation
     };
 
     // --- 2. Check for existing document and Upsert (Create or Update) ---

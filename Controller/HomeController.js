@@ -3,11 +3,11 @@ const { dataHandler, errorHandler } = require("../utils/responseHelper");
 
 // UPDATE Home Data
 const updateHomeData = async (req, res) => {
-  console.log("Request body:", req.body);
+  
   try {
-    console.log(req.file,"is the file");
+
     const data = JSON.parse(req.body.data);
-    console.log(data)
+
     const imageUrl = req?.file?.path || data.hero.imageUrl;
     
 
@@ -18,11 +18,11 @@ const updateHomeData = async (req, res) => {
       ,
       { upsert: true, new: true, runValidators: true }
     );
-    console.log(saved,"this is the saved data")
+    
 
     return dataHandler(res, 200, "All data saved successfully!", saved);
   } catch (err) {
-    console.error('Error updating home data:', err);
+    
     return errorHandler(res, 500, "Failed to update home data", err.message);
   }
 };
@@ -33,7 +33,7 @@ const getHomeData = async (req, res) => {
     const data = await HomeData.find();
     return dataHandler(res, 200, "Home data fetched successfully", data || { hero: {}, experience: { cards: [] } });
   } catch (err) {
-    console.error('Error fetching home data:', err);
+    
     return errorHandler(res, 500, "Failed to load home data", err.message);
   }
 };
@@ -44,7 +44,7 @@ const deleteHomeData = async (req, res) => {
     const deleted = await HomeData.deleteMany();
     return dataHandler(res, 200, "Home data deleted successfully", deleted);
   } catch (err) {
-    console.error('Error deleting home data:', err);
+    
     return errorHandler(res, 500, "Failed to delete home data", err.message);
   }
 };
@@ -52,14 +52,14 @@ const deleteHomeData = async (req, res) => {
 // INSERT Home Data
 const insertHomeData = async (req, res) => {
   try {
-    console.log("Inserting home data:", req.body, req.file?.path);
+    
     const data = JSON.parse(req.body.data);
     const imageUrl = req.file?.path;
 
     const returnData = await HomeData.create({ ...data, ...data.hero, imageUrl });
     return dataHandler(res, 201, "Home data saved successfully", returnData);
   } catch (err) {
-    console.error('Error inserting home data:', err);
+    
     return errorHandler(res, 500, "Failed to insert home data", err.message);
   }
 };

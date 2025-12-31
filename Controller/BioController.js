@@ -37,7 +37,7 @@ const insertBioGraphyData = async (req, res) => {
 
 // Controller to update existing biography data (upserts if none exists)
 const updateBioGraphyData = async (req, res) => {
-  console.log(req.body.data)
+  
   try {
     const data = JSON.parse(req.body.data);
     const imageUrl = req.file?.path || data.profile.photoUrl;

@@ -15,7 +15,7 @@ const getInqiryMessages = async(req,res)=>{
 }
 
 const insertInquiryMessage = async(req,res)=>{
-    console.log(req.body)
+    
     const {fullName,email,subject,message} = req.body 
 try{
 const newMessage = await inquiryModel.create({
@@ -24,7 +24,7 @@ const newMessage = await inquiryModel.create({
     message
 
 })
-console.log(newMessage)
+
 res.status(200).json({message:"Inquiry sent successfully"})
 }
 catch(err){

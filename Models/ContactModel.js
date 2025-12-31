@@ -36,6 +36,7 @@ const OfficeSchema = new mongoose.Schema({
     type: String,
     default: "Central"
   },
+  
 
   visitHeading: { type: String, default: "Our office is located in the heart of Kathmandu." },
   visitDescription: { type: String, default: "Interactive Map\nKathmandu, Nepal" },
